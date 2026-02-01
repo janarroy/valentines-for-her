@@ -6,8 +6,11 @@ let noClicks = 0;
 
 // YES CLICK
 yesBtn.addEventListener("click", () => {
-  stickers.forEach(sticker => sticker.classList.add("show"));
-  yesBtn.innerText = "YAY!!! 💖💖💖";
+  stickers.forEach(sticker => {
+    sticker.classList.add("show");
+  });
+
+  yesBtn.innerText = "YAY!!! 💖";
   noBtn.style.display = "none";
 });
 
@@ -15,11 +18,11 @@ yesBtn.addEventListener("click", () => {
 noBtn.addEventListener("click", () => {
   noClicks++;
 
-  // Shrink NO
-  const noScale = Math.max(0.4, 1 - noClicks * 0.15);
+  // Shrink NO button
+  const noScale = Math.max(0.35, 1 - noClicks * 0.15);
   noBtn.style.transform = `scale(${noScale})`;
 
-  // Grow YES
+  // Grow YES button
   const yesScale = 1 + noClicks * 0.15;
   yesBtn.style.transform = `scale(${yesScale})`;
 
