@@ -1,77 +1,114 @@
-/* Page background — match image white */
+* {
+  box-sizing: border-box;
+}
+
+/* Base page */
 body {
   font-family: Arial, sans-serif;
-  background: #ffffff; /* same white as the image */
+  background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
+  overflow: hidden;
 }
 
-/* Center content */
+/* Background photo collage */
+#photoBackground {
+  position: fixed;
+  inset: 0;
+  background-image:
+    url("Images/Background/IMG_2023.png"),
+    url("Images/Background/IMG_2364.png"),
+    url("Images/Background/IMG_2405.png"),
+    url("Images/Background/IMG_2454.png"),
+    url("Images/Background/IMG_3647.png");
+  background-size: cover;
+  background-position: center;
+  filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  z-index: -2;
+}
+
+/* White translucent overlay */
+#whiteOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.75);
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  z-index: -1;
+}
+
+/* Activate background */
+body.show-photos #photoBackground,
+body.show-photos #whiteOverlay {
+  opacity: 1;
+}
+
+/* Main content */
 .container {
   text-align: center;
+  z-index: 1;
 }
 
-/* Sticker placement */
+/* Sticker */
 .sticker-wrapper {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
-/* Sticker — keep original, smaller size */
 .sticker {
-  width: 140px; /* 👈 this is the key change */
+  width: 140px;
+  height: auto;
 }
 
-/* Question */
+/* Text */
 h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 22px;
+  margin-bottom: 16px;
 }
 
+/* Buttons */
 .buttons {
-  margin-top: 14px;
+  margin-top: 12px;
 }
 
-/* Base button — Apple clean */
 button {
   font-size: 16px;
   padding: 10px 22px;
   margin: 8px;
-  border-radius: 999px; /* pill */
+  border-radius: 999px;
   background: white;
-  border: 1px solid #d1d1d6; /* Apple gray */
+  border: 1px solid #d1d1d6;
   color: #1c1c1e;
   cursor: pointer;
   transition: all 0.15s ease;
   font-weight: 500;
 }
 
-/* YES — slightly bolder but still monochrome */
 #yesBtn {
   border-color: #1c1c1e;
 }
 
-/* NO — softer, lighter */
 #noBtn {
   border-color: #d1d1d6;
   color: #6e6e73;
+  position: relative;
 }
 
-/* Hover effect — very subtle */
 button:hover {
   background: #f5f5f7;
 }
 
-/* Active (click) */
 button:active {
   transform: scale(0.97);
 }
 
-
+/* Confetti */
 .confetti {
   position: fixed;
   top: -10px;

@@ -7,44 +7,18 @@ const defaultImg = "Images/Default.png";
 const noImg = "Images/No.png";
 const yesImg = "Images/Yes.png";
 
-// Utility: move No button randomly
+// Move No button randomly
 function moveNoButton() {
-  const x = Math.random() * 200 - 100; // left/right
-  const y = Math.random() * 150 - 75;  // up/down
-
+  const x = Math.random() * 220 - 110;
+  const y = Math.random() * 160 - 80;
   noBtn.style.transform = `translate(${x}px, ${y}px)`;
 }
 
-// When hovering over NO
-noBtn.addEventListener("mouseenter", () => {
-  dogImage.src = noImg;
-  moveNoButton();
-});
-
-// When clicking NO
-noBtn.addEventListener("click", () => {
-  dogImage.src = noImg;
-  moveNoButton();
-});
-
-yesBtn.addEventListener("click", () => {
-  dogImage.src = yesImg;
-  noBtn.style.display = "none";
-  yesBtn.innerText = "BANANA & PAPAYA!!";
-
-  launchConfetti(); // 🌸 add this line
-});
-
-
+// Confetti
 function launchConfetti() {
-  const colors = [
-    "#f4b6c2", // pink
-    "#d6c7e8", // lavender
-    "#cfe8d5", // soft green
-    "#f9d5e5"  // light rose
-  ];
+  const colors = ["#e5e5ea", "#d1d1d6", "#f2f2f7"];
 
-  for (let i = 0; i < 40; i++) {
+  for (let i = 0; i < 45; i++) {
     const confetti = document.createElement("div");
     confetti.classList.add("confetti");
 
@@ -56,9 +30,27 @@ function launchConfetti() {
 
     document.body.appendChild(confetti);
 
-    setTimeout(() => {
-      confetti.remove();
-    }, 3000);
+    setTimeout(() => confetti.remove(), 3000);
   }
 }
 
+// Hover / click NO
+noBtn.addEventListener("mouseenter", () => {
+  dogImage.src = noImg;
+  moveNoButton();
+});
+
+noBtn.addEventListener("click", () => {
+  dogImage.src = noImg;
+  moveNoButton();
+});
+
+// YES click
+yesBtn.addEventListener("click", () => {
+  dogImage.src = yesImg;
+  noBtn.style.display = "none";
+  yesBtn.innerText = "hehe 🤍";
+
+  document.body.classList.add("show-photos");
+  launchConfetti();
+});
