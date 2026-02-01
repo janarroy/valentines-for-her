@@ -1,7 +1,7 @@
-/* Page background */
+/* Page background — pure white */
 body {
   font-family: Arial, sans-serif;
-  background: #fdf6ee; /* soft cream */
+  background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,29 +14,25 @@ body {
   text-align: center;
 }
 
-/* Sticker container */
+/* Sticker placement */
 .sticker-wrapper {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
 
-/* iMessage-style sticker bubble */
-.imessage-sticker {
+/* Raw sticker look — no box */
+.sticker {
   width: 190px;
-  background: white;
-  padding: 14px;
-  border-radius: 22px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
-/* Question text */
+/* Question */
 h1 {
   font-size: 24px;
   margin-bottom: 20px;
 }
 
-/* Buttons (visual only for now) */
+/* Buttons */
 .buttons {
   margin-top: 10px;
 }
@@ -47,7 +43,6 @@ button {
   margin: 10px;
   border: none;
   border-radius: 10px;
-  cursor: default; /* no interaction yet */
 }
 
 #yesBtn {
