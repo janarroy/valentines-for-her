@@ -49,7 +49,7 @@ noBtn.addEventListener("click", () => {
 yesBtn.addEventListener("click", () => {
   dogImage.src = yesImg;
   noBtn.style.display = "none";
-  yesBtn.innerText = "hehe 🤍";
+  yesBtn.innerText = "BANANA & PAPAYAAAA";
 
   document.body.classList.add("show-photos");
   launchConfetti();
