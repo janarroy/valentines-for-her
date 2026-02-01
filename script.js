@@ -1,33 +1,39 @@
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
-const stickers = document.querySelectorAll(".sticker");
+const dogImage = document.getElementById("dogImage");
 
-let noClicks = 0;
+// Image paths
+const defaultImg = "Images/Default.png";
+const noImg = "Images/No.png";
+const yesImg = "Images/Yes.png";
 
-// YES CLICK
-yesBtn.addEventListener("click", () => {
-  stickers.forEach(sticker => {
-    sticker.classList.add("show");
-  });
+// Utility: move No button randomly
+function moveNoButton() {
+  const x = Math.random() * 200 - 100; // left/right
+  const y = Math.random() * 150 - 75;  // up/down
 
-  yesBtn.innerText = "YAY!!! 💖";
-  noBtn.style.display = "none";
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+// When hovering over NO
+noBtn.addEventListener("mouseenter", () => {
+  dogImage.src = noImg;
+  moveNoButton();
 });
 
-// NO CLICK
+// When clicking NO
 noBtn.addEventListener("click", () => {
-  noClicks++;
+  dogImage.src = noImg;
+  moveNoButton();
+});
 
-  // Shrink NO button
-  const noScale = Math.max(0.35, 1 - noClicks * 0.15);
-  noBtn.style.transform = `scale(${noScale})`;
+// When clicking YES
+yesBtn.addEventListener("click", () => {
+  dogImage.src = yesImg;
 
-  // Grow YES button
-  const yesScale = 1 + noClicks * 0.15;
-  yesBtn.style.transform = `scale(${yesScale})`;
+  // Optional: disable the No button so it stops moving
+  noBtn.style.display = "none";
 
-  // Show one sticker at a time
-  if (noClicks < stickers.length) {
-    stickers[noClicks].classList.add("show");
-  }
+  // Optional: change text
+  yesBtn.innerText = "YAY 💖";
 });
