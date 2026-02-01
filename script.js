@@ -27,13 +27,38 @@ noBtn.addEventListener("click", () => {
   moveNoButton();
 });
 
-// When clicking YES
 yesBtn.addEventListener("click", () => {
   dogImage.src = yesImg;
-
-  // Optional: disable the No button so it stops moving
   noBtn.style.display = "none";
+  yesBtn.innerText = "BANANA & PAPAYA!!";
 
-  // Optional: change text
-  yesBtn.innerText = "YAY 💖";
+  launchConfetti(); // 🌸 add this line
 });
+
+
+function launchConfetti() {
+  const colors = [
+    "#f4b6c2", // pink
+    "#d6c7e8", // lavender
+    "#cfe8d5", // soft green
+    "#f9d5e5"  // light rose
+  ];
+
+  for (let i = 0; i < 40; i++) {
+    const confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+
+    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.backgroundColor =
+      colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.animationDuration =
+      2 + Math.random() * 1.5 + "s";
+
+    document.body.appendChild(confetti);
+
+    setTimeout(() => {
+      confetti.remove();
+    }, 3000);
+  }
+}
+
