@@ -1,7 +1,7 @@
-/* Page background — pure white */
+/* Page background — match image white */
 body {
   font-family: Arial, sans-serif;
-  background: #ffffff;
+  background: #ffffff; /* same white as the image */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,9 +21,9 @@ body {
   margin-bottom: 20px;
 }
 
-/* Raw sticker look — no box */
+/* Sticker — keep original, smaller size */
 .sticker {
-  width: 190px;
+  width: 140px; /* 👈 this is the key change */
 }
 
 /* Question */
