@@ -19,11 +19,7 @@ body {
   position: fixed;
   inset: 0;
   background-image:
-    url("Images/Background/IMG_2023.png"),
-    url("Images/Background/IMG_2364.png"),
-    url("Images/Background/IMG_2405.png"),
-    url("Images/Background/IMG_2454.png"),
-    url("Images/Background/IMG_3647.png");
+    url("Images/Background/Collage_Background.png");
   background-size: cover;
   background-position: center;
   filter: blur(2px);
