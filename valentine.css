@@ -14,41 +14,57 @@ body {
   overflow: hidden;
 }
 
+/* ---------------------------
+   Full-screen collage + soft white veil
+   Paste/replace in your main.css
+   --------------------------- */
+
+/* background image layer (fills viewport) */
 #photoBackground {
   position: fixed;
   inset: 0;
-  background-image: url("Images/Background/Collage_Background.png");
-  background-size: contain;        /* 👈 show whole image */
-  background-position: center;
-  background-repeat: no-repeat;    /* 👈 no tiling */
-  background-color: #ffffff;       /* 👈 fills extra space cleanly */
+  z-index: 0; /* sits below overlay and content */
+  background-image: url("Images/Background/Collage_Background.png"); /* <-- keep this path */
+  background-size: cover;            /* cover whole viewport */
+  background-position: center center;
+  background-repeat: no-repeat;
+  transform: translateZ(0);          /* minor GPU boost */
   opacity: 0;
   transition: opacity 0.8s ease;
-  z-index: 0;
+  pointer-events: none;
 }
 
-
-/* White translucent overlay */
-#whiteOverlay {
+/* semi-opaque white veil that improves readability */
+#bgOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(255, 255, 255, 0.75);
+  z-index: 1;                         /* above background, below content */
+  background: rgba(255,255,255,0.62); /* adjust alpha 0.55-0.7 to taste */
   opacity: 0;
-  transition: opacity 0.7s ease;
-  z-index: -1;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
 }
 
-/* Activate background */
-body.show-photos #photoBackground,
-body.show-photos #whiteOverlay {
+/* make sure your main content sits above everything */
+.container, .content {
+  position: relative;
+  z-index: 2; /* content above veil and background */
+}
+
+/* When you add the `show-photos` class to body (via JS) we fade in the bg + veil */
+body.show-photos #photoBackground {
+  opacity: 1;
+}
+body.show-photos #bgOverlay {
   opacity: 1;
 }
 
-/* Main content */
-.container {
-  text-align: center;
-  z-index: 1;
+/* (Optional) small tweak: slightly darken text to keep contrast on bright photos */
+.container h1, .container p {
+  color: #0e0e0e;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.15); /* subtle lift */
 }
+
 
 /* Sticker */
 .sticker-wrapper {
