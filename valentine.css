@@ -14,19 +14,19 @@ body {
   overflow: hidden;
 }
 
-/* Background photo collage */
 #photoBackground {
   position: fixed;
   inset: 0;
-  background-image:
-    url("Images/Background/Collage_Background.png");
-  background-size: cover;
+  background-image: url("Images/Background/Collage_Background.png");
+  background-size: contain;        /* 👈 show whole image */
   background-position: center;
-  filter: blur(2px);
+  background-repeat: no-repeat;    /* 👈 no tiling */
+  background-color: #ffffff;       /* 👈 fills extra space cleanly */
   opacity: 0;
-  transition: opacity 0.7s ease;
-  z-index: -2;
+  transition: opacity 0.8s ease;
+  z-index: 0;
 }
+
 
 /* White translucent overlay */
 #whiteOverlay {
