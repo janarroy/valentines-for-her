@@ -64,6 +64,6 @@ yesBtn.addEventListener('click', () => {
   launchConfetti();
 
   // small text change for fun
-  yesBtn.innerText = 'hehe ❤️';
+  yesBtn.innerText = 'BANANA & PAPAYAAA!!';
   yesBtn.disabled = true;
 });
