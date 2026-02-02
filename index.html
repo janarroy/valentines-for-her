@@ -1,27 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Will You Be My Valentine? 🤍</title>
+  <meta charset="utf-8" />
+  <title>Will You Be My Valentine?</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="valentine.css" />
 </head>
 <body>
+  <!-- photo background (hidden until activated) -->
+  <div id="photoBackground" aria-hidden="true"></div>
 
-  <!-- Background photos -->
-  <div id="photoBackground"></div>
+  <!-- white translucent overlay that sits above the photos but below the UI -->
+  <div id="whiteOverlay" aria-hidden="true"></div>
 
-  <!-- Soft white overlay -->
-  <div id="whiteOverlay"></div>
-
-  <!-- Main content -->
   <div class="container">
-
     <div class="sticker-wrapper">
-      <img
-        src="Images/Default.png"
-        class="sticker"
-        id="dogImage"
-      />
+      <img src="Images/Default.png" alt="dog sticker" class="sticker" id="dogImage" />
     </div>
 
     <h1>Will you be my Valentine bug?</h1>
@@ -30,9 +24,8 @@
       <button id="yesBtn">Yes</button>
       <button id="noBtn">No</button>
     </div>
-
   </div>
 
-  <script src="valentine.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>

@@ -1,124 +1,139 @@
-* {
-  box-sizing: border-box;
-}
+/* Reset-ish */
+* { box-sizing: border-box; }
 
-/* Base page */
+/* Base page - keep content centered and allow page scroll if needed */
 body {
-  font-family: Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background: #ffffff;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
-  overflow: hidden;
+  min-height: 100vh;      /* allow longer pages if needed */
+  overflow: auto;
+  color: #111;
 }
 
+/* PHOTO BACKGROUND */
 #photoBackground {
   position: fixed;
   inset: 0;
   background-image: url("Images/Background/Collage_Background.png");
-  background-size: contain;        /* 👈 show whole image */
+  background-size: cover;           /* fill the viewport (may crop a little) */
   background-position: center;
-  background-repeat: no-repeat;    /* 👈 no tiling */
-  background-color: #ffffff;       /* 👈 fills extra space cleanly */
+  background-repeat: no-repeat;
+  background-attachment: fixed;     /* parallax-like fixed image */
   opacity: 0;
-  transition: opacity 0.8s ease;
-  z-index: 0;
+  transition: opacity 0.9s ease;
+  z-index: 0;                        /* behind overlay and content */
 }
 
-
-/* White translucent overlay */
+/* WHITE TRANSLUCENT OVERLAY (sits above the photos but under the UI) */
 #whiteOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255,255,255,0.6); /* tweak the 0.6 to make it lighter/darker */
   opacity: 0;
   transition: opacity 0.7s ease;
-  z-index: -1;
+  z-index: 1;                         /* sits above the photo but under content */
 }
 
-/* Activate background */
+/* When the body has this class we reveal the background & overlay */
 body.show-photos #photoBackground,
 body.show-photos #whiteOverlay {
   opacity: 1;
 }
 
-/* Main content */
+/* Main content wrapper */
 .container {
   text-align: center;
-  z-index: 1;
+  z-index: 2;           /* above overlay and photo */
+  width: 100%;
+  max-width: 820px;     /* keep the card narrow and centered */
+  padding: 32px 20px;
+  margin: 0 auto;
+  pointer-events: auto;
 }
 
 /* Sticker */
 .sticker-wrapper {
   display: flex;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
-
 .sticker {
   width: 140px;
   height: auto;
+  display: block;
 }
 
-/* Text */
+/* Question */
 h1 {
-  font-size: 22px;
-  margin-bottom: 16px;
+  font-size: 24px;
+  margin: 6px 0 18px 0;
+  font-weight: 700;
 }
 
-/* Buttons */
-.buttons {
-  margin-top: 12px;
-}
+/* Buttons - apple-like black/white rounded pills */
+.buttons { margin-top: 8px; display: flex; gap: 14px; justify-content: center; align-items: center; }
 
+/* shared button base */
 button {
-  font-size: 16px;
+  font-size: 15px;
   padding: 10px 22px;
-  margin: 8px;
   border-radius: 999px;
-  background: white;
+  background: #ffffff;
   border: 1px solid #d1d1d6;
   color: #1c1c1e;
   cursor: pointer;
-  transition: all 0.15s ease;
-  font-weight: 500;
+  transition: transform 120ms ease, background 120ms ease, box-shadow 120ms ease;
+  font-weight: 600;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
 }
 
+/* Yes button: strong black border (Apple 'filled' aesthetic is subtle here) */
 #yesBtn {
   border-color: #1c1c1e;
+  color: #1c1c1e;
+  background: #ffffff;
 }
 
+/* No button: lighter */
 #noBtn {
-  border-color: #d1d1d6;
+  border-color: #e6e6ea;
   color: #6e6e73;
-  position: relative;
+  background: #ffffff;
 }
 
+/* hover/active */
 button:hover {
-  background: #f5f5f7;
+  background: #f7f7f8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(17,17,17,0.06);
 }
-
 button:active {
-  transform: scale(0.97);
+  transform: translateY(0);
 }
 
-/* Confetti */
+/* small screens tweak */
+@media (max-width: 520px) {
+  h1 { font-size: 18px; }
+  .sticker { width: 120px; }
+  button { padding: 10px 16px; font-size: 14px; }
+}
+
+/* minimal confetti styling (JS will create elements with this class) */
 .confetti {
   position: fixed;
   top: -10px;
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  opacity: 0.9;
-  animation: fall 2.5s linear forwards;
+  opacity: 0.95;
+  animation: fall 2.2s linear forwards;
   pointer-events: none;
+  z-index: 3;
 }
-
 @keyframes fall {
-  to {
-    transform: translateY(110vh) rotate(360deg);
-    opacity: 0;
-  }
+  to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
